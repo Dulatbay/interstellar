@@ -1,134 +1,187 @@
 const hackathonFlow = {stroke: '#9e43e4', strokeWidth: 3};
 const commerceFlow = {stroke: '#3de14c', strokeWidth: 3};
 
+export const styles = {
+    roundedNode: {
+        width: '90px',
+        height: '90px',
+        backgroundColor: '#3b82f6',
+        borderRadius: '100%',
+        display: 'flex',
+        fontSize: '12px',
+        alignItems: 'center',
+        justifyContent: 'center',
+        color: '#fff',
+        textAlign: 'center',
+        border: '2px solid #1d4ed8',
+    },
+    hackathonApp: {
+        border: '2px solid #8a1dd8',
+        backgroundColor: '#8a1dd8',
+    },
+    commerceApp: {
+        border: '2px solid #14981f',
+        backgroundColor: '#14981f',
+    },
+    gold: {
+        backgroundColor: 'gold',
+        border: '3px solid #b8860b',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        color: '#fff',
+        fontWeight: 'bold',
+        textAlign: 'center',
+        boxShadow: '0 0 10px 5px rgba(255, 215, 0, 0.5)',
+        transition: 'box-shadow 0.3s ease',
+    },
+    reactFlowEdge: {
+        strokeLinecap: 'round',
+    },
+};
+
+
 export const initialNodes = [{
     id: '1', position: {x: 0, y: 0}, data: {
         label: 'X and 0',
         tools: ['C++'],
         images: ['/1.png', '/2.png'],
         description: 'Самые обычные крестики и нолики :)',
-    }, className: 'rounded-node'
+    },
+    style: styles.roundedNode
 }, {
     id: '2', position: {x: 0, y: 240}, data: {
-        label: 'Snake', tools: ['C++'], description: 'Самая обычная змейка :)', images: ['/1.png'],
-    }, className: 'rounded-node'
+        label: 'Snake',
+        tools: ['C++'],
+        description: 'Самая обычная змейка :)',
+        images: ['/1.png'],
+    },
+    style: styles.roundedNode
+
 }, {
     id: '3', position: {x: 0, y: 490}, data: {
         label: 'Steam Rep',
         tools: ['C++'],
         description: 'Консольная игра на С++, которая соединила в себя 4 игры. Живое воплащение фразы \'Неидеальное действие лучше идеального бездействия.\'',
         images: ['/1.png'],
-    }, className: 'rounded-node gold'
+    },
+    style: {...styles.roundedNode, ...styles.gold}
 }, {
     id: '4', position: {x: 0, y: 740}, data: {
         label: 'Labyrinth',
         tools: ['C++', 'SFML', 'Command Work'],
         description: 'Консольная игра на фреймворке SFML и языком программирования C++. Игра про лабиринт, где главный герой должен найти выход, по пути сражаясь с монстрами и собирая все необходимые ресурсы для выживания. Проект содержит сохранения статистики, а также элементы музыки в зависимости от контекста игры.',
         images: ['/1.png', '/2.png', '/3.png', '/4.png'],
-    }, className: 'rounded-node'
+    },
+    style: styles.roundedNode
 }, {
     id: '5', position: {x: 0, y: 980}, data: {
         label: 'Password store', tools: ['C#', 'WPF'], description: "Десктопное приложение для сохранения паролей."
-    }, className: 'rounded-node'
+    },
+    style: styles.roundedNode
 }, {
     id: '6', position: {x: 200, y: 1200}, data: {
         label: 'FTP Server',
         tools: ['C#', 'WPF', 'MaterialDesign UI Kit', 'Network Programming'],
         description: 'Десктопное приложения для работы с файлами удаленно по протоколу FTP.',
         images: ['/1.jpg']
-    }, className: 'rounded-node'
+    },
+    style: styles.roundedNode
 }, {
     id: '7', position: {x: 0, y: 1200}, data: {
         label: 'Weather App',
         images: ['/1.jpg'],
         tools: ['C#', 'WPF', 'MaterialDesign UI Kit'],
         description: 'Десктопное приложение для для отслеживания погоды на разных городах.',
-    }, className: 'rounded-node'
+    },
+    style: styles.roundedNode
 }, {
     id: '8', position: {x: -200, y: 1200}, data: {
         label: 'Delivery Tracker',
         tools: ['C#', 'WPF', 'Command Word', 'MaterialDesign UI Kit'],
         description: 'Astana Hub 2022 Hackathon. В этом проекте хакатона я впервые попробовал JSON. Проект для отслеживания статуса курьеров для бизнес проекта. Исходный код и скрины полностью потерялись. Хакатон проиграли, так как сдались.'
-    }, className: 'rounded-node hackathon-app'
+    },
+    style: {...styles.roundedNode, ...styles.hackathonApp}
 }, {
     id: '9', position: {x: 0, y: 1450}, data: {
         label: 'To-Do App', tools: ['React'], description: 'Первое веб-приложение на реакте.'
-    }, className: 'rounded-node'
+    }, style: styles.roundedNode
 }, {
     id: '10', position: {x: -200, y: 1800}, data: {
         label: 'Shop',
         tools: ['React', 'API'],
         description: 'Обычное веб-приложение с использованием FakeStoreApi. Впервые попробывал API на вкус.'
-    }, className: 'rounded-node'
+    }, style: styles.roundedNode
 }, {
     id: '11', position: {x: 200, y: 1800}, data: {
         label: 'React-Pizza Application', tools: ['React', 'SCSS'], description: 'Туториал с ютуба.'
-    }, className: 'rounded-node'
+    }, style: styles.roundedNode
 }, {
     id: '12', position: {x: 0, y: 2100}, data: {
         label: 'VK Replica',
         tools: ['Django', 'React', 'MS SQL Server'],
         images: ['/1.jpg', '/2.jpg'],
         description: 'Первое полноценное фулл-стак приложение. Обычная копия VK, только стиль сайта пользователь может менять на лету и подстраивать под себя.'
-    }, className: 'rounded-node'
+    }, style: styles.roundedNode
 }, {
     id: '13', position: {x: 0, y: 2400}, data: {
         label: 'Mining calculator',
         tools: ['C#', 'WPF', 'MaterialDesign UI Kit', 'XML'],
         description: 'Первый хакатон на котором я занял 1 место. Хакатон среди учеников академии Шаг по всем Казахстану. Нужно было написать майнинг калькулятор, но я сверху написал код который парсит сайт TechnoDom, и находит информацию подробнее про девайс. Получил 36/36 по оценкам и занял 1 место.'
-    }, className: 'rounded-node hackathon-app'
+    }, style: {...styles.roundedNode, ...styles.hackathonApp}
 }, {
     id: '14', position: {x: 0, y: 2700}, data: {
         label: 'Kundelik Kz Replica',
         tools: ['C#', 'WPF', 'MaterialDesign UI Kit', 'MS SQL Server', 'DLL Libs', 'Design Patterns'],
         images: ['/1.png', '/2.png', '/3.png', '/4.jpg'],
         description: 'Первый проект за который мне заплатили. Дипломная работа выпускника IT университета. Платформа позволяет помогать учителям и ученикам в учебе, беря на себя всю рутинную работу. Оценка домашек, заметки, дедлайны, отзывы о учениках, статистика о успеваемости, группы и предметы, а также классификация учителей, которые могут брать те или инные группы. Помимо кода, был написан антиплагиат на 40 страниц.'
-    }, className: 'rounded-node commerce-app gold'
+    }, className: 'rounded-node commerce-app gold',
+    style: {...styles.roundedNode, ...styles.commerceApp, ...styles.gold}
 }, {
     id: '15', position: {x: 400, y: 3000}, data: {
         label: 'Xamarin App',
         tools: ['C#', 'Xamarin'],
         description: 'Первый и на сегодняшний день последний проект на мобилке',
-    }, className: 'rounded-node'
+    }, style: styles.roundedNode
 }, {
     id: '16', position: {x: -400, y: 3000}, data: {
         label: 'Unity Game',
         tools: ['C#', 'Unity'],
         description: 'Первый и на сегодняшний день последний проект на game dev',
 
-    }, className: 'rounded-node'
+    }, style: styles.roundedNode
 }, {
     id: '17', position: {x: 0, y: 3000}, data: {
         label: 'KinoPoisk replica',
         tools: ['C#', 'ASP.NET', 'MS SQL Server', 'MVC'],
         images: ['/1.jpg', '/2.jpg', '/3.jpg'],
         description: 'Обычная копия кинопоиска который использует внешний апи для заполнения фильмов в бд и с возможностью просмотра трейлера, и сохранения в избранное.',
-    }, className: 'rounded-node'
+    }, style: styles.roundedNode
 }, {
     id: '18', position: {x: -200, y: 3300}, data: {
         label: 'Nasa App',
         tools: ['PHP', 'Symphony', 'PostgreSql', 'NASA API', '3D Modeling'],
         description: 'Научное приложение для отслеживания действия и новостей в космосе. Используется апи наса и поддерживается система постов, что позволяет пользователю выкладывать научные посты касательно космоса.'
-    }, className: 'rounded-node'
+    }, style: styles.roundedNode
 }, {
     id: '19', position: {x: 0, y: 3300}, data: {
         label: 'KZH1',
         description: 'Первая версия проекта KZH.',
         tools: ['Java', 'Spring', 'React'],
         images: ['/1.png', '/2.png', '/3.png', '/4.png']
-    }, className: 'rounded-node'
+    }, style: styles.roundedNode
 }, {
     id: '20', position: {x: 200, y: 3300}, data: {
         label: 'Site about ecology',
         tools: ["React", 'Express JS', 'MongoDB'],
         description: 'Проект с хакатона среди школьников в 2023.'
-    }, className: 'rounded-node hackathon-app'
+    }, style: {...styles.roundedNode, ...styles.hackathonApp}
 }, {
     id: '21', position: {x: 100, y: 3600}, data: {
         label: 'KZH2',
         tools: ['C#', 'ASP.NET', 'PostgreSql', 'React', 'SFD arch'],
         description: 'Димломная работа для выпуска в академии Шаг.'
-    }, className: 'rounded-node hackathon-app'
+    }, style: {...styles.roundedNode, ...styles.hackathonApp}
 }, {
     id: '22', position: {x: 0, y: 3800},
     data: {
@@ -136,7 +189,7 @@ export const initialNodes = [{
         description: 'Первый проект на микросервисах. Нужно было сделать полноценную копию инстраграмма.',
         tools: ['Java', 'Spring', 'Spring Cloud', 'API Gateway', 'Eureka server', 'Keycloak', 'React', 'SFD Arch'],
         images: []
-    }, className: 'rounded-node'
+    }, style: styles.roundedNode
 }, {
     id: '23',
     position: {x: -100, y: 4000},
@@ -146,7 +199,7 @@ export const initialNodes = [{
         tools: ['Java', 'Spring', 'Spring Cloud', 'API Gateway', 'Eureka server', 'Keycloak', 'React'],
         images: []
     },
-    className: 'rounded-node hackathon-app'
+    style: {...styles.roundedNode, ...styles.hackathonApp}
 }, {
     id: '24',
     position: {x: 0, y: 4200},
@@ -156,7 +209,7 @@ export const initialNodes = [{
         tools: ['Java', 'Spring', 'Keycloak', 'React', 'SFD Arch'],
         images: []
     },
-    className: 'rounded-node commerce-app'
+    style: {...styles.roundedNode, ...styles.commerceApp}
 }, {
     id: '25',
     position: {x: 200, y: 4200},
@@ -165,7 +218,7 @@ export const initialNodes = [{
         description: 'Бизнес приложения для бизнеса в Павлодаре, позволяющий трекать сотрудников и ввести отчет о бизнесе.',
         tools: ['Java', 'Spring', 'Keycloak', 'React', 'SFD Arch', 'Tailwind CSS', 'GCP'],
     },
-    className: 'rounded-node commerce-app gold'
+    style: {...styles.roundedNode, ...styles.commerceApp, ...styles.gold}
 }, {
     id: '26',
     position: {x: 400, y: 4200},
@@ -174,7 +227,7 @@ export const initialNodes = [{
         description: '',
         tools: ['ExpressJs', 'React', 'OpenAI API'],
     },
-    className: 'rounded-node hackathon-app'
+    style: {...styles.roundedNode, ...styles.hackathonApp}
 }, {
     id: '27',
     position: {x: 500, y: 4350},
@@ -183,7 +236,7 @@ export const initialNodes = [{
         description: '',
         tools: ['Python', 'TG Bot', 'OpenAI API'],
     },
-    className: 'rounded-node hackathon-app'
+    style: {...styles.roundedNode, ...styles.hackathonApp}
 }, {
     id: '28',
     position: {x: 600, y: 4500},
@@ -192,7 +245,7 @@ export const initialNodes = [{
         description: '',
         tools: [],
     },
-    className: 'rounded-node hackathon-app'
+    style: {...styles.roundedNode, ...styles.hackathonApp}
 }, {
     id: '29',
     position: {x: 700, y: 4650},
@@ -201,7 +254,7 @@ export const initialNodes = [{
         description: '',
         tools: [],
     },
-    className: 'rounded-node hackathon-app'
+    style: {...styles.roundedNode, ...styles.hackathonApp}
 }, {
     id: '30',
     position: {x: 800, y: 4800},
@@ -210,7 +263,7 @@ export const initialNodes = [{
         description: '',
         tools: [],
     },
-    className: 'rounded-node hackathon-app'
+    style: {...styles.roundedNode, ...styles.hackathonApp}
 }, {
     id: '31',
     position: {x: 300, y: 5000},
@@ -219,7 +272,7 @@ export const initialNodes = [{
         description: '',
         tools: [],
     },
-    className: 'rounded-node commerce-app gold'
+    style: {...styles.roundedNode, ...styles.commerceApp, ...styles.gold}
 }, {
     id: '32',
     position: {x: 100, y: 5200},
@@ -228,7 +281,7 @@ export const initialNodes = [{
         description: '',
         tools: [],
     },
-    className: 'rounded-node commerce-app'
+    style: {...styles.roundedNode, ...styles.commerceApp}
 }, {
     id: '33',
     position: {x: 300, y: 5600},
@@ -237,9 +290,8 @@ export const initialNodes = [{
         description: '',
         tools: [],
     },
-    className: 'rounded-node commerce-app gold'
+    style: {...styles.roundedNode, ...styles.commerceApp, ...styles.gold}
 },];
-
 
 
 export const initialEdges = [{id: 'e1-2', source: '1', target: '2', type: 'bezier'}, {

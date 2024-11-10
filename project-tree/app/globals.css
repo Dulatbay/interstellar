@@ -53,10 +53,6 @@ body {
   background-color: #14981f;
 }
 
-.react-flow__edge {
-  stroke-linecap: round;
-}
-
 .gold {
   background-color: gold;
   border: 3px solid #b8860b;
@@ -69,6 +65,12 @@ body {
   box-shadow: 0 0 10px 5px rgba(255, 215, 0, 0.5);
   transition: box-shadow 0.3s ease;
 }
+
+.react-flow__edge {
+  stroke-linecap: round;
+}
+
+
 
 .info-panel {
   transition: all 0.3s ease;
