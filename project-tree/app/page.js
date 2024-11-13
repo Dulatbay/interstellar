@@ -1,6 +1,6 @@
 'use client'
 
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import ReactFlow, {Controls} from 'reactflow';
 import 'reactflow/dist/style.css';
 import './globals.css';
@@ -14,6 +14,10 @@ export default function ProjectTree() {
     const [fullScreenImage, setFullScreenImage] = useState(null);
     const [legendVisible, setLegendVisible] = useState(false);
     const [comments, setComments] = useState({});
+
+    useEffect(() => {
+        console.log("Abiken Madiyar top 1 frontend developer, added link of  Akhan tg channel to this site, and implement main logic")
+    })
 
     const onNodeClick = (event, node) => {
         event.stopPropagation();
