@@ -77,7 +77,8 @@ const InfoPanel = ({ node, onClose, openFullScreenImage }) => {
             </ul>
 
             <div className="mt-6">
-                <h4 className="text-lg font-medium mb-2">Комментарии</h4>
+                <p className={'text-gray-400 text-[14px]'}>На все комменты отвечу у себя в <a className='text-blue-600 underline' target={'_blank'} href={"https://t.me/qit_qanly"} >тг канале</a></p>
+                <h4 className="text-lg font-medium mb-2">Комментарии </h4>
                 <ul className="mb-4 h-full">
                     {comments.map((comment, index) => (
                         <li key={index} className="p-2 border border-gray-500 mb-2 rounded-l text-white">
