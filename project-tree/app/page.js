@@ -12,7 +12,8 @@ import {initialNodes, initialEdges} from './data';
 export default function ProjectTree() {
     const [selectedNode, setSelectedNode] = useState(null);
     const [fullScreenImage, setFullScreenImage] = useState(null);
-    const [legendVisible, setLegendVisible] = useState(false); // Управляем видимостью легенды
+    const [legendVisible, setLegendVisible] = useState(false);
+    const [comments, setComments] = useState({});
 
     const onNodeClick = (event, node) => {
         event.stopPropagation();
@@ -35,9 +36,17 @@ export default function ProjectTree() {
         setLegendVisible(!legendVisible);
     };
 
+    // Add comment for a specific node
+    const addComment = (nodeId, comment) => {
+        setComments((prevComments) => ({
+            ...prevComments,
+            [nodeId]: [...(prevComments[nodeId] || []), comment],
+        }));
+    };
+
     return (
         <div className="flex flex-col h-screen">
-            {legendVisible && <ProjectLegend/>}
+            {legendVisible && <ProjectLegend />}
             <button
                 onClick={toggleLegend}
                 className={`text-white p-2 m-4 rounded-lg self-start ${legendVisible ? 'bg-red-800' : 'bg-blue-500'}`}
@@ -45,21 +54,25 @@ export default function ProjectTree() {
                 {legendVisible ? 'Скрыть категории' : 'Показать категории'}
             </button>
             <div className="flex flex-grow">
-                <div style={{flex: 3, borderRight: '1px solid #ddd'}} onClick={closeInfoPanel}>
+                <div style={{ flex: 3, borderRight: '1px solid #ddd' }} onClick={closeInfoPanel}>
                     <ReactFlow
                         nodes={initialNodes}
                         edges={initialEdges}
                         onNodeClick={onNodeClick}
-                        defaultEdgeOptions={{type: 'bezier', style: {strokeWidth: 3, stroke: '#3b82f6'}}}
+                        defaultEdgeOptions={{ type: 'bezier', style: { strokeWidth: 3, stroke: '#3b82f6' } }}
                         fitView
                         minZoom={0.1}
                     >
-                        <Controls/>
+                        <Controls />
                     </ReactFlow>
                 </div>
-                <InfoPanel node={selectedNode} onClose={closeInfoPanel} openFullScreenImage={openFullScreenImage}/>
+                <InfoPanel
+                    node={selectedNode}
+                    onClose={closeInfoPanel}
+                    openFullScreenImage={openFullScreenImage}
+                />
             </div>
-            {fullScreenImage && <FullScreenImage image={fullScreenImage} onClose={closeFullScreenImage}/>}
+            {fullScreenImage && <FullScreenImage image={fullScreenImage} onClose={closeFullScreenImage} />}
         </div>
     );
 }

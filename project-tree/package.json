@@ -12,7 +12,8 @@
     "next": "15.0.3",
     "react": "19.0.0-rc-66855b96-20241106",
     "react-dom": "19.0.0-rc-66855b96-20241106",
-    "reactflow": "^11.11.4"
+    "reactflow": "^11.11.4",
+    "mongoose": "^8.3.2"
   },
   "devDependencies": {
     "postcss": "^8",

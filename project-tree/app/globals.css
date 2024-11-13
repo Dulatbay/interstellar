@@ -77,10 +77,14 @@ body {
   opacity: 0;
   position: absolute;
   background-color: #282828;
-  height: 100%;
   width: 400px;
+  height: 100vh; /* Prevents overflow */
+  overflow-y: auto; /* Allows scrolling if content exceeds view */
   right: 0;
+  top: 0;
   transform: translateX(100%);
+  padding-top: 15px;
+  padding-left: 15px;
   display: none;
 }
 
