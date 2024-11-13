@@ -16,8 +16,8 @@ export default function ProjectTree() {
     const [comments, setComments] = useState({});
 
     useEffect(() => {
-        console.log("Abiken Madiyar top 1 frontend developer, added link of  Akhan tg channel to this site, and implement main logic")
-    })
+        console.log("Abiken Madiyar top 1 frontend developer, added link of  Akhan tg channel to this site")
+    }, [])
 
     const onNodeClick = (event, node) => {
         event.stopPropagation();
