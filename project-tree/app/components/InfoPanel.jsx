@@ -1,17 +1,27 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 import Image from 'next/image';
 
-const InfoPanel = ({ node, onClose, openFullScreenImage }) => {
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+const InfoPanel = ({node, onClose, openFullScreenImage}) => {
     const [comments, setComments] = useState([]);
     const [newComment, setNewComment] = useState('');
+    const [getIsLoading, setGetIsLoading] = useState(false);
+    const [postIsLoading, setPostIsLoading] = useState(false);
 
     useEffect(() => {
         if (node) {
+            setGetIsLoading(true);
             fetch(`/api/comments?nodeId=${node.id}`)
                 .then((response) => response.json())
-                .then((data) => setComments(data.comments || []))
+                .then(async (data) => {
+                    setGetIsLoading(false);
+                    setComments(data.comments || [])
+                })
                 .catch((error) => console.error('Ошибка при загрузке комментариев:', error));
         }
     }, [node]);
@@ -19,16 +29,19 @@ const InfoPanel = ({ node, onClose, openFullScreenImage }) => {
     const addComment = async () => {
         if (!newComment.trim()) return;
 
+        setPostIsLoading(true);
+
         try {
             const response = await fetch('/api/comments', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ nodeId: node.id, comment: newComment }),
+                body: JSON.stringify({nodeId: node.id, comment: newComment}),
             });
 
             const data = await response.json();
+            setPostIsLoading(false);
             if (response.ok) {
                 setComments([...comments, data.comment]);
                 setNewComment('');
@@ -60,7 +73,8 @@ const InfoPanel = ({ node, onClose, openFullScreenImage }) => {
                 <h4>Изображения</h4>
                 {node.data.images && node.data.images.length !== 0 ? (
                     node.data.images.map((image, index) => (
-                        <li key={index} className="border border-gray-600 text-neutral-400 rounded-xl overflow-hidden hover:border-white transition-all">
+                        <li key={index}
+                            className="border border-gray-600 text-neutral-400 rounded-xl overflow-hidden hover:border-white transition-all">
                             <Image
                                 width={400}
                                 height={400}
@@ -77,14 +91,18 @@ const InfoPanel = ({ node, onClose, openFullScreenImage }) => {
             </ul>
 
             <div className="mt-6">
-                <p className={'text-gray-400 text-[14px]'}>На все комменты отвечу у себя в <a className='text-blue-600 underline' target={'_blank'} href={"https://t.me/qit_qanly"} >тг канале</a></p>
+                <p className={'text-gray-400 text-[14px]'}>На все комменты отвечу у себя в <a
+                    className='text-blue-600 underline' target={'_blank'} href={"https://t.me/qit_qanly"}>тг канале</a>
+                </p>
                 <h4 className="text-lg font-medium mb-2">Комментарии </h4>
                 <ul className="mb-4 h-full">
-                    {comments.map((comment, index) => (
-                        <li key={index} className="p-2 border border-gray-500 mb-2 rounded-l text-white">
-                            {comment.text}
-                        </li>
-                    ))}
+                    {
+                        getIsLoading ? <span>Загрузка...</span> :
+                            comments.map((comment, index) => (
+                                <li key={index} className="p-2 border border-gray-500 mb-2 rounded-l text-white">
+                                    {comment.text}
+                                </li>
+                            ))}
                 </ul>
 
                 <div className="flex gap-2">
@@ -97,6 +115,7 @@ const InfoPanel = ({ node, onClose, openFullScreenImage }) => {
                     />
                     <button
                         onClick={addComment}
+                        disabled={postIsLoading}
                         className="bg-blue-500 text-white px-4 py-1 rounded-md hover:bg-blue-600 transition"
                     >
                         Добавить
